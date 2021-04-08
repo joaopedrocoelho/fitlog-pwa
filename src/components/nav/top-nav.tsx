@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +14,7 @@ import firebaseApp from "../../firebase";
 const TopNav = () => {
   const [IsActive, setIsActive] = useState<boolean>(false);
   const [IsSideMenuOpen, setIsSideMenuOpen] = useState<boolean>(false);
-  const [user, loading, error] = useAuthState(firebaseApp.auth);
+  const [user] = useAuthState(firebaseApp.auth);
 
   return (
     <>

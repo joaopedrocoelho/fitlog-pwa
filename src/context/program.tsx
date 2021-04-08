@@ -1,5 +1,5 @@
 import React from "react";
-import Program, { muscleGroup, DefaultProgram } from "../interfaces/program";
+import Program, { muscleGroup } from "../interfaces/program";
 
 export interface ProgramContextInt {
   program: Program | undefined;

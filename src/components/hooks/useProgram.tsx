@@ -2,8 +2,6 @@ import React from "react";
 
 import Program, { muscleGroup } from "../../interfaces/program";
 
-import firebaseApp from "../../firebase";
-
 export const useProgram = () => {
   const [program, setEditedProgram] = React.useState<Program | undefined>();
 

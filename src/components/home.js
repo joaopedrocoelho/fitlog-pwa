@@ -8,7 +8,7 @@ import SignIn from "./auth/sign-in";
 
 const Home = (props) => {
   const [user, loading, error] = useAuthState(FirebaseApp.auth);
-  const { days, program, setProgram } = useContext(ProgramContext);
+  const { days } = useContext(ProgramContext);
   const history = useHistory();
 
   useEffect(() => {

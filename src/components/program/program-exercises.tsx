@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 interface Props {
   name: string;
@@ -6,7 +6,7 @@ interface Props {
 }
 
 const ProgramExercises: React.FC<Props> = ({ name, exercises }) => {
-  const [exerciseList, setExerciseList] = useState<string[]>(exercises);
+  const [exerciseList] = useState<string[]>(exercises);
 
   return (
     <div className="ProgramExercises">

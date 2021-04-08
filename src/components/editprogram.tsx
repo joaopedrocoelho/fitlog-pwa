@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  useRef,
-  createRef,
-  useEffect,
-} from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 
@@ -13,7 +7,7 @@ import AddButton from "./add/add-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
-import Program, { muscleGroup } from "../interfaces/program";
+import Program from "../interfaces/program";
 import EditProgramDay from "./edit/edit-program-day";
 import EditLabel from "./edit/edit-label";
 

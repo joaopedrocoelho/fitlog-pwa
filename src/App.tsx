@@ -32,13 +32,15 @@ function App() {
   const [user, loading, error] = useAuthState(firebaseApp.auth);
 
   useEffect(() => {
-    window.onbeforeunload = function () {
-      return true;
-    };
-    return () => {
-      window.onbeforeunload = null;
-    };
-  }, []);
+    if (user) {
+      window.onbeforeunload = function () {
+        return true;
+      };
+      return () => {
+        window.onbeforeunload = null;
+      };
+    }
+  }, [user]);
 
   return (
     <div className="App">

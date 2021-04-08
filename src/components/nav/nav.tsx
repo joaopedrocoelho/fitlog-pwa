@@ -9,7 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import firebaseApp from "../../firebase";
 
 const Nav: React.FC = () => {
-  const { program, days, setProgram } = useContext(ProgramContext);
+  const { days } = useContext(ProgramContext);
   const location = useLocation();
 
   const [renderWorkoutNav, setRenderWorkoutNav] = useState<
@@ -17,7 +17,7 @@ const Nav: React.FC = () => {
   >();
   const [renderTopNav, setRenderTopNav] = useState<JSX.Element>();
 
-  const [user, loading, error] = useAuthState(firebaseApp.auth);
+  const [user] = useAuthState(firebaseApp.auth);
 
   useEffect(() => {
     //logged out
