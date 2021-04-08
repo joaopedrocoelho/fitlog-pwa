@@ -1,0 +1,85 @@
+.edit-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.editable-label {
+  padding: 0 0.4em;
+  border: none;
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  display: inline-flex;
+  margin: auto 0.7em;
+}
+
+.editable-label:disabled {
+  background: none;
+  pointer-events: none;
+}
+
+.editable-label:focus {
+  box-shadow: 0px 0px 3px 3px var(--light-blue);
+}
+
+.check-edit {
+  color: var(--green);
+  visibility: hidden;
+  margin: auto 1em;
+  justify-content: flex-start;
+}
+
+.check-edit:active {
+  color: var(--green);
+}
+
+.edit-icon {
+  display: flex;
+  align-self: flex-end;
+}
+
+.delete-icon {
+  color: var(--medium-grey);
+  display: flex;
+  align-self: flex-end;
+  margin-left: 1em;
+  visibility: hidden;
+}
+
+.hidden {
+  visibility: hidden;
+}
+.visible {
+  visibility: visible;
+}
+
+ul.add li {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+ul.add li svg:first-of-type {
+  margin: auto 0 auto 2em;
+}
+
+ul.add li span svg:first-of-type {
+  margin: auto;
+}
+
+ul.add li svg:first-of-type.fa-caret-right {
+  margin: auto;
+}
+ul.add li svg {
+  margin: auto 1em;
+}
+
+h2.edit {
+  padding-bottom: 0.5em;
+}
+
+h5 span svg[data-icon="times"] {
+  transform: translateX(40%);
+}

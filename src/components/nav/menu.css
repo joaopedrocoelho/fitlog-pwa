@@ -1,0 +1,127 @@
+/*top nav */
+
+nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  position: relative;
+  overflow: visible;
+  background-color: var(--medium-grey);
+  justify-content: space-between;
+  min-height: 2.5em;
+}
+
+nav::-webkit-scrollbar {
+  display: none;
+}
+
+nav a {
+  color: white;
+  margin: auto 0;
+  padding: 0 1em;
+}
+
+/* nav a svg {
+  height: 1.3em !important;
+  padding: 0.1em;
+  margin-left: auto;
+  margin-right: 1em;
+} */
+
+h3.nav-header {
+  display: flex;
+  margin: auto;
+  color: white;
+}
+
+.burger-menu {
+  width: 0;
+  background-color: var(--lightest-grey);
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  left: 0;
+  transition: width 0.7s ease-out;
+  z-index: 2;
+}
+.burger-menu ul {
+  display: none;
+}
+
+.menu-active {
+  width: calc(var(--max-width) * 0.7);
+  display: flex;
+}
+
+.burger-menu-btn {
+  position: relative;
+  display: flex !important;
+  outline: 0;
+  transform: scale(80%);
+  z-index: 5;
+}
+
+.menu-active ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 0;
+  width: inherit;
+  margin-top: 5em;
+  color: var(--deep-blue);
+}
+
+li.user-info {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+
+  align-items: center;
+  width: inherit;
+  overflow: hidden;
+  padding: 1em 2em;
+  width: 100%;
+}
+
+.user-info img {
+  border-radius: 50%;
+  height: 3em;
+  margin-right: 1em;
+}
+
+.user-info span {
+  margin-left: auto;
+}
+
+/* days nav */
+
+nav.days-container {
+  justify-content: space-around;
+  width: 100%;
+}
+
+nav.days-container a {
+  background-color: var(--lightest-grey);
+  text-decoration: none;
+  color: var(--medium-grey);
+  margin: 0 auto;
+
+  width: 100%;
+  height: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: none;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 0.5em;
+
+  border-bottom: 0.3em solid var(--lightest-grey);
+
+  outline: 0;
+}
+
+.days-container a.active {
+  border-bottom: 0.3em solid #56cfe1;
+}

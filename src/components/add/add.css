@@ -1,0 +1,105 @@
+.add-day {
+  height: calc(100vh - 1em);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-day label {
+  align-self: flex-start;
+  width: 100%;
+}
+
+.add-label,
+.add-label:focus {
+  outline: none;
+  padding: 0 0.5em 0.2em 0.5em;
+  width: 80%;
+  font-size: 2em;
+  color: var(--medium-grey);
+  font-weight: bold;
+  font-family: inherit;
+  display: flex;
+  margin: 1em auto;
+  border-style: solid;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom-width: 0.2em;
+  border-color: var(--light-blue);
+}
+
+.back-button {
+  font-size: 2em;
+  color: white;
+  display: flex;
+  margin: auto 0.5em;
+}
+
+.plus-button {
+  font-size: 1.5em;
+  color: white;
+  display: flex;
+  align-self: flex-end;
+  margin: auto 0.8em;
+}
+
+ul.add-list {
+  padding-left: 0;
+}
+
+.add-list li {
+  padding: 1em;
+
+  border-bottom: var(--medium-grey);
+  border-width: 0.1em;
+  border-bottom-style: solid;
+}
+
+.add-list li:active {
+  background-color: var(--lightest-grey);
+  color: var(--light-blue);
+}
+
+.add-day-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 3vh 0 3vh 1.4em;
+  padding: 0.5em;
+  background-color: var(--deep-blue);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 1vw;
+  outline: none;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.add-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 1.5rem 0;
+  padding: 0.5em;
+  background-color: var(--deep-blue);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 1vw;
+  outline: none;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.add-btn svg,
+.add-day-btn svg {
+  padding-right: 0.4em;
+}
