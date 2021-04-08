@@ -239,12 +239,8 @@ h5 {
 }
 
 @media screen and (max-width: 700px) {
-  .burger-menu {
-    left: 0;
-  }
-
-  .menu-active {
-    width: calc(var(--max-width) * 0.7);
-    display: flex;
+  body {
+    width: 100%;
+    overflow-x: hidden;
   }
 }

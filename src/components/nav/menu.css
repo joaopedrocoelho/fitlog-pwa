@@ -125,3 +125,20 @@ nav.days-container a {
 .days-container a.active {
   border-bottom: 0.3em solid #56cfe1;
 }
+
+@media screen and (max-width: 700px) {
+  .burger-menu {
+    left: 0;
+  }
+
+  .menu-active {
+    width: 70%;
+    display: flex;
+  }
+
+  .menu-active ul {
+    width: 100%;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+}
