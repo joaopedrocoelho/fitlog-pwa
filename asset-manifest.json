@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/fitlog-pwa/static/css/main.5098140b.chunk.css",
-    "main.js": "/fitlog-pwa/static/js/main.fc7b8af5.chunk.js",
-    "main.js.map": "/fitlog-pwa/static/js/main.fc7b8af5.chunk.js.map",
+    "main.js": "/fitlog-pwa/static/js/main.d7a830cd.chunk.js",
+    "main.js.map": "/fitlog-pwa/static/js/main.d7a830cd.chunk.js.map",
     "runtime-main.js": "/fitlog-pwa/static/js/runtime-main.617c9209.js",
     "runtime-main.js.map": "/fitlog-pwa/static/js/runtime-main.617c9209.js.map",
     "static/js/2.4e4ee58a.chunk.js": "/fitlog-pwa/static/js/2.4e4ee58a.chunk.js",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.617c9209.js",
     "static/js/2.4e4ee58a.chunk.js",
     "static/css/main.5098140b.chunk.css",
-    "static/js/main.fc7b8af5.chunk.js"
+    "static/js/main.d7a830cd.chunk.js"
   ]
 }
