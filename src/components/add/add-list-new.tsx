@@ -26,7 +26,6 @@ interface Props {
 }
 
 const AddList: React.FC<Props> = ({ header, callback }) => {
-  const [user, loadingUser, error] = useAuthState(firebaseApp.auth);
   const { dayEdit, setDay } = useContext(DayBeingEdited);
   const { muscle, setMuscle } = useContext(MuscleContext);
   const { section, setSection } = useContext(SectionContext);
@@ -83,7 +82,6 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
 
   const onLongPress = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     if (header === "Exercise") {
-      console.log((e.target as Element).id);
       setMultiSelect(true);
       setMultiSelectArray((oldArray) => [
         ...oldArray,
@@ -95,11 +93,19 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
   };
 
   const onClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    if (header === "Exercise" && setMultiSelect) {
-      setMultiSelectArray((oldArray) => [
-        ...oldArray,
-        (e.target as Element).innerHTML,
-      ]);
+    if (MultiSelect) {
+      if (MultiSelectArray.includes((e.target as Element).innerHTML)) {
+        //if element is already selected, deselects it
+        const newArray = MultiSelectArray.filter(
+          (element) => element !== (e.target as Element).innerHTML
+        );
+        setMultiSelectArray(newArray);
+      } else {
+        setMultiSelectArray((oldArray) => [
+          ...oldArray,
+          (e.target as Element).innerHTML,
+        ]);
+      }
     } else {
       callback && callback((e.target as Element).innerHTML);
     }
@@ -137,6 +143,9 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
   return !loading && list ? (
     <>
       <h2>{header}</h2>
+      {header === "Exercise" && (
+        <h4>press and hold to select multiple exercises</h4>
+      )}
 
       <ul className={"add-list"}>
         {list &&

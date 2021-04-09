@@ -30,6 +30,7 @@ body {
 
 body section {
   width: inherit;
+  overflow-x: hidden;
 }
 
 .loading-code-container {
@@ -49,7 +50,6 @@ ul {
   padding-left: 1em;
   margin: 0;
   width: auto;
-  overflow-x: hidden;
 }
 
 ul.exercises li {

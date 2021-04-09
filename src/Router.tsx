@@ -90,7 +90,7 @@ const AppRouter: React.FC = () => {
   }, [days, location.pathname]);
 
   return (
-    <Router>
+    <Router basename="/fitlog-pwa">
       <QueryParamProvider ReactRouterRoute={Route}>
         {!loadingData ? <Nav /> : <LoadingCode />}
 
