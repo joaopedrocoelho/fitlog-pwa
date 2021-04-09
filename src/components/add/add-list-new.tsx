@@ -1,5 +1,7 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
+
+import useLongPress from "../hooks/useLongPress";
 import { useQueryParams, StringParam } from "use-query-params";
 
 import MuscleContext from "../../context/muscle";
@@ -11,9 +13,16 @@ import UsersLists from "../../context/userlists";
 import { useAuthState } from "react-firebase-hooks/auth";
 import firebaseApp from "../../firebase";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheckCircle,
+  faCircle,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+
 interface Props {
   header: string;
-  callback?: (p: string) => void;
+  callback?: (p: string | string[]) => void;
 }
 
 const AddList: React.FC<Props> = ({ header, callback }) => {
@@ -24,6 +33,10 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
   const { muscleList, sectionList, exercisesList, setUsersList } = useContext(
     UsersLists
   );
+
+  //longpress states
+  const [MultiSelect, setMultiSelect] = useState(false);
+  const [MultiSelectArray, setMultiSelectArray] = useState<string[]>([]);
 
   const [listKeys, setListKeys] = useState(Object.keys(exercisesList || {})); //render the exercises list
   const [list, setList] = useState<string[]>(); //render the list of items
@@ -36,6 +49,69 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
     sectionQ: StringParam,
   });
 
+  /* render list */
+  const renderExerciseList = useCallback(() => {
+    const muscleName = listKeys.find((element) => element === muscle);
+    if (muscleName) {
+      setList(exercisesList![muscle]);
+    }
+  }, [exercisesList, listKeys, muscle]);
+
+  const renderList = useCallback(() => {
+    switch (header) {
+      case "Muscle":
+        setList(muscleList);
+        break;
+      case "Section":
+        setList(sectionList);
+        break;
+      case "Exercise":
+        exercisesList && setList(exercisesList[muscle]);
+        exercisesList && setListKeys(Object.keys(exercisesList));
+        renderExerciseList();
+        break;
+    }
+  }, [
+    exercisesList,
+    header,
+    muscle,
+    muscleList,
+    renderExerciseList,
+    sectionList,
+  ]);
+  /* onClick and LongPress setup */
+
+  const onLongPress = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    if (header === "Exercise") {
+      console.log((e.target as Element).id);
+      setMultiSelect(true);
+      setMultiSelectArray((oldArray) => [
+        ...oldArray,
+        (e.target as Element).innerHTML,
+      ]);
+    } else {
+      onClick(e);
+    }
+  };
+
+  const onClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    if (header === "Exercise" && setMultiSelect) {
+      setMultiSelectArray((oldArray) => [
+        ...oldArray,
+        (e.target as Element).innerHTML,
+      ]);
+    } else {
+      callback && callback((e.target as Element).innerHTML);
+    }
+  };
+
+  const defaultOptions = {
+    shouldPreventDefault: true,
+    delay: 500,
+  };
+
+  const longPressEvent = useLongPress(onLongPress, onClick, defaultOptions);
+
   const { day, group, sectionQ } = query;
   useEffect(() => {
     if (section === "" || muscle === "" || dayEdit === "") {
@@ -45,7 +121,7 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
         group && setMuscle(group);
         sectionQ && setSection(sectionQ);
         setLoading(false);
-        console.log("state", list, listKeys);
+        renderList();
       } else {
         history.push("/");
       }
@@ -54,28 +130,9 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
 
   const history = useHistory();
 
-  const renderList = () => {
-    const muscleName = listKeys.find((element) => element === muscle);
-    if (muscleName) {
-      setList(exercisesList![muscle]);
-    }
-  };
-
   useEffect(() => {
-    exercisesList && setList(exercisesList[muscle]);
-    exercisesList && setListKeys(Object.keys(exercisesList));
-    switch (header) {
-      case "Muscle":
-        setList(muscleList);
-        break;
-      case "Section":
-        setList(sectionList);
-        break;
-      case "Exercise":
-        renderList();
-        break;
-    }
-  });
+    renderList();
+  }, [renderList]);
 
   return !loading && list ? (
     <>
@@ -83,19 +140,47 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
 
       <ul className={"add-list"}>
         {list &&
-          list.map((muscle, index) => {
+          list.map((listItem, index) => {
             return (
               <li
-                onClick={(e) => {
-                  callback && callback((e.target as Element).innerHTML);
-                }}
-                key={`${index}-${muscle}`}
+                {...longPressEvent}
+                key={`${index}-${listItem}`}
+                id={`${index}-${listItem}`}
+                className={
+                  MultiSelectArray.includes(listItem) ? "selected-exercise" : ""
+                }
               >
-                {muscle}
+                {listItem}
               </li>
             );
           })}
       </ul>
+      {MultiSelect && (
+        <div className="multiselect-buttons">
+          <span
+            className={"fa-layers fa-fw visible"}
+            onClick={(e) => {
+              setMultiSelectArray([]);
+              setMultiSelect(false);
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faCircle}
+              color={"var(--light-red)"}
+              size={"4x"}
+            />
+            <FontAwesomeIcon icon={faTimes} color="white" size={"3x"} />
+          </span>
+          <FontAwesomeIcon
+            icon={faCheckCircle}
+            className={"check-edit visible"}
+            onClick={(e) => {
+              callback && callback(MultiSelectArray);
+            }}
+            size={"4x"}
+          />
+        </div>
+      )}
     </>
   ) : (
     <LoadingCode />

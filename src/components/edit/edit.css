@@ -80,6 +80,10 @@ h2.edit {
   padding-bottom: 0.5em;
 }
 
-h5 span svg[data-icon="times"] {
-  transform: translateX(40%);
+svg[data-icon="times"] {
+  transform: translateX(45%);
+}
+
+.svg-inline--fa.fa-times.fa-w-11.fa-xs {
+  transform: translateX(0);
 }

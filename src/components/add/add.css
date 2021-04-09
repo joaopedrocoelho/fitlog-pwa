@@ -57,7 +57,8 @@ ul.add-list {
   border-bottom-style: solid;
 }
 
-.add-list li:active {
+.add-list li.selected-exercise,
+li:active {
   background-color: var(--lightest-grey);
   color: var(--light-blue);
 }
@@ -102,4 +103,16 @@ ul.add-list {
 .add-btn svg,
 .add-day-btn svg {
   padding-right: 0.4em;
+}
+
+.multiselect-buttons {
+  display: flex;
+  width: 100%;
+  margin-top: 3vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.multiselect-buttons span {
+  margin-right: 10vw;
 }

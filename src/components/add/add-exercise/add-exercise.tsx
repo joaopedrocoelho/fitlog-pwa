@@ -33,7 +33,9 @@ const AddExercise: React.FC = () => {
       header={"Exercise"}
       callback={(param) => {
         if (clonedDay && clonedProgram) {
-          clonedDay[dayEdit][muscle][section].push(param);
+          Array.isArray(param)
+            ? clonedDay[dayEdit][muscle][section].push(...param)
+            : clonedDay[dayEdit][muscle][section].push(param);
           clonedProgram[dayEdit] = clonedDay[dayEdit];
           firebaseApp.updateProgram(clonedProgram);
           setProgram(clonedProgram);

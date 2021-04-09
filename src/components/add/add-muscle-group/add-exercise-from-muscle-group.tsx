@@ -33,7 +33,9 @@ const AddExerciseFromMuscleGroup: React.FC = () => {
         if (clonedProgram) {
           clonedProgram[dayEdit][muscle] = {};
           clonedProgram[dayEdit][muscle][section] = [];
-          clonedProgram[dayEdit][muscle][section].push(param);
+          Array.isArray(param)
+            ? clonedProgram[dayEdit][muscle][section].push(...param)
+            : clonedProgram[dayEdit][muscle][section].push(param);
           firebaseApp.updateProgram(clonedProgram);
           setProgram(clonedProgram);
           history.push(`/${dayEdit}`);

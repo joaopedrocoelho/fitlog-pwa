@@ -42,6 +42,8 @@ function App() {
     }
   }, [user]);
 
+  //useEffect(() => {}, [program]);
+
   return (
     <div className="App">
       <UsersLists.Provider value={lists}>

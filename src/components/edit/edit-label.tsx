@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "./edit.css";
 
 import EditButtons from "./edit-buttons";
@@ -41,7 +41,7 @@ const EditLabel: React.FC<Props> = ({
   const label = React.useRef<HTMLInputElement>(null);
   const editArea = React.useRef<HTMLSpanElement>(null);
   const [labelvalue, setValue] = useState(labelText);
-  const [oldvalue, setOldvalue] = useState<string>(labelText);
+  const [oldvalue] = useState<string>(labelText);
 
   const CancelSize = () => {
     if (size === "2x") {

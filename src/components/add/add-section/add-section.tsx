@@ -18,7 +18,7 @@ const AddSection: React.FC = () => {
     <AddList
       header={"Section"}
       callback={(param) => {
-        setSection(param);
+        !Array.isArray(param) && setSection(param);
         history.push({
           pathname: "/add-section/2",
           search: `?day=${dayEdit}&group=${muscle}&sectionQ=${section}`,

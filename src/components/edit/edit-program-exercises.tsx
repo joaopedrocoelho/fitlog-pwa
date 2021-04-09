@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import EditLabel from "./edit-label";
 import { useHistory } from "react-router-dom";
 
@@ -7,7 +7,6 @@ import AddButton from "../add/add-button";
 import DayBeingEdited from "../../context/day";
 import SectionContext from "../../context/section";
 import MuscleContext from "../../context/muscle";
-import SetAdd from "../../context/add";
 import firebaseApp from "../../firebase";
 
 interface Props {

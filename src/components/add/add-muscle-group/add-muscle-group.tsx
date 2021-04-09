@@ -18,7 +18,7 @@ const AddMuscleGroup: React.FC = () => {
     <AddList
       header={`Muscle`}
       callback={(newMuscle) => {
-        setMuscle(newMuscle);
+        !Array.isArray(newMuscle) && setMuscle(newMuscle);
         history.push({
           pathname: "/add-muscle-group/2",
           search: `?day=${dayEdit}&group=${newMuscle}`,

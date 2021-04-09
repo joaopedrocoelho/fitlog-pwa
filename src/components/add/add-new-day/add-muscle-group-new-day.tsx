@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
-import { useQueryParams, StringParam, NumberParam } from "use-query-params";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 import AddList from "../add-list-new";
 
@@ -9,20 +8,15 @@ import MuscleContext from "../../../context/muscle";
 
 const AddMuscleGroupNewDay: React.FC = () => {
   const history = useHistory();
-  const [query, setQuery] = useQueryParams({
-    day: StringParam,
-  });
 
-  const { day } = query;
-
-  const { dayEdit, setDay } = useContext(DayBeingEdited);
+  const { dayEdit } = useContext(DayBeingEdited);
   const { setMuscle } = useContext(MuscleContext);
 
   return (
     <AddList
       header={`Muscle`}
       callback={(newMuscle) => {
-        setMuscle(newMuscle);
+        !Array.isArray(newMuscle) && setMuscle(newMuscle);
         history.push({
           pathname: "/add-new-day/3",
           search: `?day=${dayEdit}&group=${newMuscle}`,

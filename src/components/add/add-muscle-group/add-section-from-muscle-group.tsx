@@ -18,7 +18,7 @@ const AddSectionFromMuscleGroup = () => {
     <AddList
       header={"Section"}
       callback={(param) => {
-        setSection(param);
+        !Array.isArray(param) && setSection(param);
         history.push({
           pathname: "/add-muscle-group/3",
           search: `?day=${dayEdit}&group=${muscle}&sectionQ=${section}`,

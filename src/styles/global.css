@@ -23,6 +23,13 @@ body {
   margin: auto;
   height: 100%;
   max-width: var(--max-width);
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1em;
+  overflow-x: hidden;
+}
+
+body section {
+  width: inherit;
 }
 
 .loading-code-container {
@@ -34,12 +41,6 @@ body {
   height: 100vh;
 }
 
-#root {
-  margin: auto;
-  font-family: "Roboto", sans-serif;
-  font-size: 1.1em;
-}
-
 ul {
   list-style-type: none;
   display: flex;
@@ -47,15 +48,13 @@ ul {
   flex-wrap: nowrap;
   padding-left: 1em;
   margin: 0;
-}
-
-ul.exercises li:first-child {
-  font-weight: 400;
-  color: var(--darkest-grey);
+  width: auto;
+  overflow-x: hidden;
 }
 
 ul.exercises li {
-  color: var(--light-grey);
+  font-weight: 400;
+  color: var(--darkest-grey);
 }
 
 li {
