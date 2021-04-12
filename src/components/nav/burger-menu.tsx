@@ -1,3 +1,4 @@
+//import { Link } from "react-router-dom";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -19,6 +20,16 @@ const BurgerMenu: React.FC<Props> = ({ isOpen, callback }) => {
     <>
       <div className={isOpen ? "burger-menu menu-active" : "burger-menu"}>
         <ul>
+          {/*  {user && (
+            <>
+              <li className={"download-workout"}>
+                <Link to="/download-pdf">Download workout as PDF</Link>
+              </li>
+              <li className={"download-workout"}>
+                <Link to="/view-pdf">View workout as PDF</Link>
+              </li>
+            </>
+          )} */}
           <li className="user-info">
             {user && (
               <>

@@ -42,6 +42,8 @@ import Home from "./components/home";
 import firebaseApp from "./firebase";
 
 import UsersLists from "./context/userlists";
+//import PDFDocument from "./components/pdf/document";
+//import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 
 const AppRouter: React.FC = () => {
   const { days, program, setProgram } = useContext(ProgramContext);
@@ -97,7 +99,7 @@ const AppRouter: React.FC = () => {
         <Switch>
           {renderSwitch}
           {user ? (
-            <Route>
+            <>
               <Route
                 exact
                 path="/"
@@ -207,7 +209,24 @@ const AppRouter: React.FC = () => {
                   }}
                 />
               </Route>
-            </Route>
+
+              {/*  <Route exact path="/download-pdf">
+                <PDFDownloadLink
+                  document={<PDFDocument />}
+                  fileName={`${user.displayName}'s Workout.pdf`}
+                >
+                  {({ blob, url, loading, error }) =>
+                    loading ? "Loading document..." : "Download now!"
+                  }
+                </PDFDownloadLink>
+              </Route>
+
+              <Route exact path="/view-pdf">
+                <PDFViewer>
+                  <PDFDocument />
+                </PDFViewer>
+              </Route> */}
+            </>
           ) : (
             <Route path="/">
               <SignIn />

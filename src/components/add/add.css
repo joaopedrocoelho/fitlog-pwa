@@ -51,7 +51,7 @@ ul.add-list {
 
 .add-list li {
   padding: 1em;
-
+  user-select: none;
   border-bottom: var(--medium-grey);
   border-width: 0.1em;
   border-bottom-style: solid;

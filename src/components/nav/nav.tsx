@@ -48,9 +48,16 @@ const Nav: React.FC = () => {
     }
   }, [days, location.pathname, user]);
 
+  useEffect(() => {
+    if (location.pathname === `/pdf`) {
+      setRenderTopNav(undefined);
+      setRenderWorkoutNav(undefined);
+    }
+  }, [location.pathname]);
+
   return (
     <>
-      <nav>{renderTopNav}</nav>
+      {renderTopNav && <nav>{renderTopNav}</nav>}
       {renderWorkoutNav && (
         <nav className={"days-container"}>{renderWorkoutNav}</nav>
       )}

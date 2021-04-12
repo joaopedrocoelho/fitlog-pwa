@@ -55,14 +55,6 @@ class Firebase {
           this.muscleList = doc.data()?.muscleList;
           this.sectionList = doc.data()?.sectionList;
           this.exercisesList = doc.data()?.exerciseList;
-
-          console.log(
-            "properties",
-            this.userProgram,
-            this.muscleList,
-            this.sectionList,
-            this.exercisesList
-          );
         } else {
           //if it doesn't it's a new user
           this.register();
@@ -89,7 +81,9 @@ class Firebase {
       .update({
         program: newProgram,
       })
-      .then(() => console.log("Program updated successfully!"))
+      .then(() =>
+        console.log("Program updated successfully!", this.userProgram)
+      )
       .catch((error: any) => console.error("Error updating program:", error));
   }
 
