@@ -6,8 +6,7 @@ import EditButtons from "./edit-buttons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
-  faCircle,
-  faTimes,
+  faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
@@ -97,23 +96,18 @@ const EditLabel: React.FC<Props> = ({
           value={labelvalue}
           disabled={!editable}
         />
-        <span
-          className={
-            editable ? "fa-layers fa-fw visible" : "fa-layers fa-fw hidden"
-          }
+
+        <FontAwesomeIcon
+          icon={faTimesCircle}
+          color={"var(--light-red)"}
+          size={size}
+          className={editable ? "visible" : "hidden"}
           onClick={(e) => {
             /* e.stopPropagation(); */
             setValue(oldvalue);
             setEditable(!editable);
           }}
-        >
-          <FontAwesomeIcon
-            icon={faCircle}
-            color={"var(--light-red)"}
-            size={size}
-          />
-          <FontAwesomeIcon icon={faTimes} color="white" size={CancelSize()} />
-        </span>
+        />
         <FontAwesomeIcon
           icon={faCheckCircle}
           className={editable ? "check-edit visible" : "check-edit"}
