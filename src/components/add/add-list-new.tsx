@@ -10,8 +10,6 @@ import DayBeingEdited from "../../context/day";
 import SectionContext from "../../context/section";
 import LoadingCode from "../loading-code";
 import UsersLists from "../../context/userlists";
-import { useAuthState } from "react-firebase-hooks/auth";
-import firebaseApp from "../../firebase";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -119,6 +117,7 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
   const longPressEvent = useLongPress(onLongPress, onClick, defaultOptions);
 
   const { day, group, sectionQ } = query;
+
   useEffect(() => {
     if (section === "" || muscle === "" || dayEdit === "") {
       setLoading(true);
@@ -132,13 +131,13 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
         history.push("/");
       }
     }
-  }, []);
+  }, [section, muscle, dayEdit]);
 
   const history = useHistory();
 
   useEffect(() => {
     renderList();
-  }, [renderList]);
+  }, []);
 
   return !loading && list ? (
     <>

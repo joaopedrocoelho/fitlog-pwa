@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react";
+import { useSwipeable } from "react-swipeable";
 
 const useLongPress = (
   onLongPress,
@@ -6,12 +7,23 @@ const useLongPress = (
   { shouldPreventDefault = true, delay = 300 } = {}
 ) => {
   const [longPressTriggered, setLongPressTriggered] = useState(false);
+  const [Swiping, setSwiping] = useState(false);
   const timeout = useRef();
   const target = useRef();
 
+  const swipe = useSwipeable({
+    onSwipeStart: (e) => {
+      console.log("swipe", e);
+      setSwiping(true);
+    },
+    onSwiped: (e) => {
+      setSwiping(false);
+    },
+  });
+
   const start = useCallback(
     (event) => {
-      if (shouldPreventDefault && event.target) {
+      if (shouldPreventDefault && event.target && !Swiping) {
         event.target.addEventListener("touchend", preventDefault, {
           passive: false,
         });
@@ -22,7 +34,7 @@ const useLongPress = (
         setLongPressTriggered(true);
       }, delay);
     },
-    [onLongPress, delay, shouldPreventDefault]
+    [onLongPress, delay, shouldPreventDefault, Swiping]
   );
 
   const clear = useCallback(
@@ -39,10 +51,11 @@ const useLongPress = (
 
   return {
     onMouseDown: (e) => start(e),
-    //onTouchStart: (e) => start(e),
+    onTouchStart: (e) => start(e),
     onMouseUp: (e) => clear(e),
     onMouseLeave: (e) => clear(e, false),
-    //onTouchEnd: (e) => clear(e),
+    onTouchEnd: (e) => clear(e),
+    swipe,
   };
 };
 

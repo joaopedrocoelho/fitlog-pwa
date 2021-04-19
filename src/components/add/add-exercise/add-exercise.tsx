@@ -26,7 +26,7 @@ const AddExercise: React.FC = () => {
       setClonedDay(program);
       setClonedProgram(program);
     }
-  }, []);
+  }, [program]);
 
   return (
     <AddList
