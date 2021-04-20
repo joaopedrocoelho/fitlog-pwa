@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
+import { useSwipeable } from "react-swipeable";
 
 import useLongPress from "../hooks/useLongPress";
 import { useQueryParams, StringParam } from "use-query-params";
@@ -27,6 +28,14 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
   const { dayEdit, setDay } = useContext(DayBeingEdited);
   const { muscle, setMuscle } = useContext(MuscleContext);
   const { section, setSection } = useContext(SectionContext);
+  const swipe = useSwipeable({
+    onSwipeStart: (e) => {
+      console.log("swipe start", e);
+    },
+    onSwiped: (e) => {
+      console.log("swipe end", e);
+    },
+  });
   const { muscleList, sectionList, exercisesList, setUsersList } = useContext(
     UsersLists
   );
@@ -152,6 +161,7 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
             return (
               <li
                 {...longPressEvent}
+                {...swipe}
                 key={`${index}-${listItem}`}
                 id={`${index}-${listItem}`}
                 className={
