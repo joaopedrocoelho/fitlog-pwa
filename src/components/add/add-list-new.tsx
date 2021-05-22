@@ -1,4 +1,10 @@
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+} from "react";
 import { useHistory } from "react-router-dom";
 import { useSwipeable } from "react-swipeable";
 
@@ -28,17 +34,20 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
   const { dayEdit, setDay } = useContext(DayBeingEdited);
   const { muscle, setMuscle } = useContext(MuscleContext);
   const { section, setSection } = useContext(SectionContext);
-  const swipe = useSwipeable({
+  const isSwiping = useRef(false);
+
+  const swiping = useSwipeable({
+    //if swiping prevent click events
     onSwipeStart: (e) => {
-      console.log("swipe start", e);
+      isSwiping.current = e.first;
+      console.log("onSwipeStart", isSwiping.current);
     },
     onSwiped: (e) => {
-      console.log("swipe end", e);
+      setTimeout(() => (isSwiping.current = e.first), 100);
     },
   });
-  const { muscleList, sectionList, exercisesList, setUsersList } = useContext(
-    UsersLists
-  );
+  const { muscleList, sectionList, exercisesList, setUsersList } =
+    useContext(UsersLists);
 
   //longpress states
   const [MultiSelect, setMultiSelect] = useState(false);
@@ -100,21 +109,23 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
   };
 
   const onClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    if (MultiSelect) {
-      if (MultiSelectArray.includes((e.target as Element).innerHTML)) {
-        //if element is already selected, deselects it
-        const newArray = MultiSelectArray.filter(
-          (element) => element !== (e.target as Element).innerHTML
-        );
-        setMultiSelectArray(newArray);
+    if (!isSwiping.current) {
+      if (MultiSelect) {
+        if (MultiSelectArray.includes((e.target as Element).innerHTML)) {
+          //if element is already selected, deselects it
+          const newArray = MultiSelectArray.filter(
+            (element) => element !== (e.target as Element).innerHTML
+          );
+          setMultiSelectArray(newArray);
+        } else {
+          setMultiSelectArray((oldArray) => [
+            ...oldArray,
+            (e.target as Element).innerHTML,
+          ]);
+        }
       } else {
-        setMultiSelectArray((oldArray) => [
-          ...oldArray,
-          (e.target as Element).innerHTML,
-        ]);
+        callback && callback((e.target as Element).innerHTML);
       }
-    } else {
-      callback && callback((e.target as Element).innerHTML);
     }
   };
 
@@ -155,13 +166,12 @@ const AddList: React.FC<Props> = ({ header, callback }) => {
         <h4>press and hold to select multiple exercises</h4>
       )}
 
-      <ul className={"add-list"}>
+      <ul className={"add-list"} {...swiping}>
         {list &&
           list.map((listItem, index) => {
             return (
               <li
                 {...longPressEvent}
-                {...swipe}
                 key={`${index}-${listItem}`}
                 id={`${index}-${listItem}`}
                 className={
