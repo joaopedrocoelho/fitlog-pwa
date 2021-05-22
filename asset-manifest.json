@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/fitlog-pwa/static/css/main.960dcdeb.chunk.css",
-    "main.js": "/fitlog-pwa/static/js/main.d2971772.chunk.js",
-    "main.js.map": "/fitlog-pwa/static/js/main.d2971772.chunk.js.map",
+    "main.js": "/fitlog-pwa/static/js/main.33ed6034.chunk.js",
+    "main.js.map": "/fitlog-pwa/static/js/main.33ed6034.chunk.js.map",
     "runtime-main.js": "/fitlog-pwa/static/js/runtime-main.ee32b864.js",
     "runtime-main.js.map": "/fitlog-pwa/static/js/runtime-main.ee32b864.js.map",
-    "static/js/2.39536db2.chunk.js": "/fitlog-pwa/static/js/2.39536db2.chunk.js",
-    "static/js/2.39536db2.chunk.js.map": "/fitlog-pwa/static/js/2.39536db2.chunk.js.map",
+    "static/js/2.94871a71.chunk.js": "/fitlog-pwa/static/js/2.94871a71.chunk.js",
+    "static/js/2.94871a71.chunk.js.map": "/fitlog-pwa/static/js/2.94871a71.chunk.js.map",
     "static/js/3.b207c599.chunk.js": "/fitlog-pwa/static/js/3.b207c599.chunk.js",
     "static/js/3.b207c599.chunk.js.map": "/fitlog-pwa/static/js/3.b207c599.chunk.js.map",
     "index.html": "/fitlog-pwa/index.html",
     "service-worker.js": "/fitlog-pwa/service-worker.js",
     "service-worker.js.map": "/fitlog-pwa/service-worker.js.map",
     "static/css/main.960dcdeb.chunk.css.map": "/fitlog-pwa/static/css/main.960dcdeb.chunk.css.map",
-    "static/js/2.39536db2.chunk.js.LICENSE.txt": "/fitlog-pwa/static/js/2.39536db2.chunk.js.LICENSE.txt"
+    "static/js/2.94871a71.chunk.js.LICENSE.txt": "/fitlog-pwa/static/js/2.94871a71.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ee32b864.js",
-    "static/js/2.39536db2.chunk.js",
+    "static/js/2.94871a71.chunk.js",
     "static/css/main.960dcdeb.chunk.css",
-    "static/js/main.d2971772.chunk.js"
+    "static/js/main.33ed6034.chunk.js"
   ]
 }
