@@ -7,7 +7,7 @@ import AddButton from "./add/add-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
-import Program from "../interfaces/program";
+import Program, { muscleGroup } from "../interfaces/program";
 import EditProgramDay from "./edit/edit-program-day";
 import EditLabel from "./edit/edit-label";
 
@@ -22,21 +22,27 @@ const EditProgram: React.FC = () => {
 
   const { program, days, setProgram } = useContext(ProgramContext);
 
+  const [DayList, setDayList] = useState<[string, muscleGroup][]>();
+
   const { setDay } = useContext(DayBeingEdited);
 
   function openList(e: React.MouseEvent, index: any) {
-    console.log("openList ran");
     index === active ? setActive(-1) : setActive(index);
   }
 
-  useEffect(() => {}, [program]);
+  useEffect(() => {
+    setDayList(days);
+    console.log("days", days);
+    console.log("DayList", DayList);
+  }, [program]);
 
   return (
     <section className="Program">
       <h2> Edit or add days to your workout:</h2>
       <ul className={"fa-ul add"}>
         {days &&
-          days.map(([name, data], index: number) => {
+          DayList &&
+          DayList.map(([name, data], index: number) => {
             return (
               <>
                 <li key={`day-${index}`} onClick={(e) => openList(e, index)}>
@@ -56,8 +62,9 @@ const EditProgram: React.FC = () => {
                       }
                     }}
                     deleteElement={() => {
-                      days.splice(index, 1);
-                      const obj: Program = Object.fromEntries(days);
+                      const DaysClone = days;
+                      DaysClone.splice(index, 1);
+                      const obj: Program = Object.fromEntries(DaysClone);
                       firebaseApp.updateProgram(obj);
                       setProgram(obj);
                     }}

@@ -79,7 +79,7 @@ const EditProgramExercises: React.FC<Props> = ({
           }}
         />
         {exerciseList.map((name, index) => (
-          <li key={index}>
+          <li key={`${name}-${index}`}>
             <EditLabel
               labelText={name}
               editElement={(changedName) => {

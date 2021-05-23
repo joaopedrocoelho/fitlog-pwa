@@ -85,6 +85,7 @@ const EditProgramPart: React.FC<Props> = ({
           dayName={dayName}
           muscleId={muscleId}
           typeId={index}
+          key={`${name}-${index}`}
         />
       ))}
     </div>

@@ -21,6 +21,7 @@ const EditProgramDay: React.FC<Props> = ({ data, dayId, dayName }) => {
               dayId={dayId}
               dayName={dayName}
               muscleId={index}
+              key={`${name}-${index}`}
             />
           </>
         );
